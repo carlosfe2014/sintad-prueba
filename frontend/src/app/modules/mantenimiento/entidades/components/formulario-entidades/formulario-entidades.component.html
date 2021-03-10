@@ -1,0 +1,179 @@
+<form [formGroup]="formulario" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ titleModal }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Tipo de documento: </label>
+                        <div class="input-group">
+                            <select
+                                    [ngClass]="{
+                                  'is-invalid': checkInput('tipoDocumentoId', 'invalid'),
+                                  'is-valid': checkInput('tipoDocumentoId', 'valid')
+                                  }"
+                                    class="custom-select" formControlName='tipoDocumentoId'>
+                                <option value="" selected>Seleccione el tipo de documento</option>
+                                <option selected *ngFor="let tipoDocumento of tipoDocumentos" value="{{ tipoDocumento.id }}">{{ tipoDocumento.nombre }}</option>
+                            </select>
+                        </div>
+                        <span *ngIf="checkInput('tipoDocumentoId', 'invalid', 'required')" style="font-size: 12px;" class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El tipo de documento es obligatorio.</span>
+                        <span *ngIf="checkInput('tipoDocumentoId', 'invalid', 'min')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El tipo de documento no es válido.</span>
+                        <span *ngIf="checkInput('tipoDocumentoId', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El tipo de documento es válido.</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Número de documento: </label>
+                        <input
+                                [ngClass]="{
+                                  'is-invalid': checkInput('numeroDocumento', 'invalid'),
+                                  'is-valid': checkInput('numeroDocumento', 'valid')
+                                  }"
+                                formControlName="numeroDocumento"
+                                type="text"
+                                autocomplete="off"
+                                class="form-control"
+                                name="numeroDocumento"
+                                placeholder="Número de documento...">
+                        <span *ngIf="checkInput('numeroDocumento', 'invalid', 'required')" style="font-size: 12px;" class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El número de documento es obligatorio.</span>
+                        <span *ngIf="checkInput('numeroDocumento', 'invalid', 'maxlength')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El número de documento debe tener como máximo 25 caracteres.</span>
+                        <span *ngIf="checkInput('numeroDocumento', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El número de documento es válido.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Número de documento: </label>
+                        <input
+                                [ngClass]="{
+                                  'is-invalid': checkInput('razonSocial', 'invalid'),
+                                  'is-valid': checkInput('razonSocial', 'valid')
+                                  }"
+                                formControlName="razonSocial"
+                                type="text"
+                                autocomplete="off"
+                                class="form-control"
+                                name="razonSocial"
+                                placeholder="Razón social...">
+                        <span *ngIf="checkInput('razonSocial', 'invalid', 'required')" style="font-size: 12px;" class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> La razón social es obligatoria.</span>
+                        <span *ngIf="checkInput('razonSocial', 'invalid', 'maxlength')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> La razón social debe tener como máximo 100 caracteres.</span>
+                        <span *ngIf="checkInput('razonSocial', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> La razón social es válida.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Nombre comercial: </label>
+                        <input
+                                [ngClass]="{
+                                  'is-invalid': checkInput('nombreComercial', 'invalid'),
+                                  'is-valid': checkInput('nombreComercial', 'valid')
+                                  }"
+                                formControlName="nombreComercial"
+                                type="text"
+                                autocomplete="off"
+                                class="form-control"
+                                name="nombreComercial"
+                                placeholder="Nombre comercial...">
+                        <span *ngIf="checkInput('nombreComercial', 'invalid', 'maxlength')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El nombre comercial tener como máximo 50 caracteres.</span>
+                        <span *ngIf="checkInput('nombreComercial', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El nombre comercial es válido.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Tipo de contribuyente: </label>
+                        <div class="input-group">
+                            <select
+                                    [ngClass]="{
+                                  'is-invalid': checkInput('tipoContribuyenteId', 'invalid'),
+                                  'is-valid': checkInput('tipoContribuyenteId', 'valid')
+                                  }"
+                                    class="custom-select" formControlName='tipoContribuyenteId'>
+                                <option value="" selected>Seleccione el tipo de contribuyente</option>
+                                <option selected *ngFor="let tipoContribuyente of tipoContribuyentes" value="{{ tipoContribuyente.id }}">{{ tipoContribuyente.nombre }}</option>
+                            </select>
+                        </div>
+                        <span *ngIf="checkInput('tipoContribuyenteId', 'invalid', 'min')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El tipo de contribuyente no es válido.</span>
+                        <span *ngIf="checkInput('tipoContribuyenteId', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El tipo de contribuyente es válido.</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Dirección: </label>
+                        <input
+                                [ngClass]="{
+                                  'is-invalid': checkInput('direccion', 'invalid'),
+                                  'is-valid': checkInput('direccion', 'valid')
+                                  }"
+                                formControlName="direccion"
+                                type="text"
+                                autocomplete="off"
+                                class="form-control"
+                                name="direccion"
+                                placeholder="Dirección...">
+                        <span *ngIf="checkInput('direccion', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> La dirección es válida.</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Teléfono: </label>
+                        <input
+                                [ngClass]="{
+                                  'is-invalid': checkInput('telefono', 'invalid'),
+                                  'is-valid': checkInput('telefono', 'valid')
+                                  }"
+                                formControlName="telefono"
+                                type="text"
+                                autocomplete="off"
+                                class="form-control"
+                                name="telefono"
+                                placeholder="Teléfono...">
+                        <span *ngIf="checkInput('telefono', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El teléfono es válido.</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="bsModalRef.hide()">
+            <i class="fa fa-times"></i>
+            Cancelar
+        </button>
+        <button type="submit" class="btn btn-dark">
+            <i class="fa fa-save"></i>
+            Guardar
+        </button>
+    </div>
+</form>

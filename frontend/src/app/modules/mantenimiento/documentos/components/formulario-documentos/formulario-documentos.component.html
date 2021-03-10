@@ -1,0 +1,93 @@
+<form [formGroup]="formulario" (ngSubmit)="save()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ titleModal }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Código: </label>
+            <input
+              [ngClass]="{
+                                  'is-invalid': checkInput('codigo', 'invalid'),
+                                  'is-valid': checkInput('codigo', 'valid')
+                                  }"
+              formControlName="codigo"
+              type="text"
+              autocomplete="off"
+              class="form-control"
+              name="codigo"
+              placeholder="Código del tipo de documento...">
+            <span *ngIf="checkInput('codigo', 'invalid', 'required')" style="font-size: 12px;" class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El código es obligatorio.</span>
+            <span *ngIf="checkInput('codigo', 'invalid', 'maxlength')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El código debe tener como máximo 20 caracteres.</span>
+            <span *ngIf="checkInput('codigo', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El código es válido.</span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Nombre: </label>
+            <input
+              [ngClass]="{
+                                  'is-invalid': checkInput('nombre', 'invalid'),
+                                  'is-valid': checkInput('nombre', 'valid')
+                                  }"
+              formControlName="nombre"
+              type="text"
+              autocomplete="off"
+              class="form-control"
+              name="nombre"
+              placeholder="Nombre del tipo de documento...">
+            <span *ngIf="checkInput('nombre', 'invalid', 'required')" style="font-size: 12px;" class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El nombre es obligatorio.</span>
+            <span *ngIf="checkInput('nombre', 'invalid', 'maxlength')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> El nombre debe tener como máximo 100 caracteres.</span>
+            <span *ngIf="checkInput('nombre', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El nombre es válido.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Descripción: </label>
+            <input
+              [ngClass]="{
+                                  'is-invalid': checkInput('descripcion', 'invalid'),
+                                  'is-valid': checkInput('descripcion', 'valid')
+                                  }"
+              formControlName="descripcion"
+              type="text"
+              autocomplete="off"
+              class="form-control"
+              name="descripcion"
+              placeholder="Descripción del tipo de documento...">
+            <span *ngIf="checkInput('descripcion', 'invalid', 'maxlength')" style="font-size: 12px;"  class="text-muted d-block text-danger"><i style="font-size: 11px;" class="text-danger pi pi-times"></i> La descripción debe tener como máximo 200 caracteres.</span>
+            <span *ngIf="checkInput('descripcion', 'valid')" style="font-size: 12px;"  class="text-muted d-block text-success"><i style="font-size: 11px;" class="text-success pi pi-check"></i> El nombre es válido.</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="bsModalRef.hide()">
+      <i class="fa fa-times"></i>
+      Cancelar
+    </button>
+    <button type="submit" class="btn btn-dark">
+      <i class="fa fa-save"></i>
+      Guardar
+    </button>
+  </div>
+</form>

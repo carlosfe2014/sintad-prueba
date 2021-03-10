@@ -1,0 +1,46 @@
+
+
+<p-toolbar styleClass="mb-2">
+  <ng-template pTemplate="left">
+    <h3>Tipos de documento</h3>
+  </ng-template>
+
+  <ng-template pTemplate="right">
+    <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openModal()"></button>
+  </ng-template>
+</p-toolbar>
+
+
+
+<p-panel styleClass="panel-lista">
+
+  <ng-template pTemplate="header">
+
+    <p-table [value]="tiposDocumentos" styleClass="p-datatable-striped" [paginator]="true" [rows]="10" >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:5rem">ID</th>
+          <th style="width:5rem">Código</th>
+          <th>Nombre del tipo de documento</th>
+          <th>Descripción</th>
+          <th style="width:8rem">Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-elemento>
+        <tr *ngIf="elemento.estado">
+          <td>{{elemento.id}}</td>
+          <td>{{elemento.codigo}}</td>
+          <td>{{elemento.nombre}}</td>
+          <td>{{elemento.descripcion}}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-primary mr-1" (click)="openModal(elemento)"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-secondary" (click)="deleteElemento(elemento)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </ng-template>
+
+</p-panel>

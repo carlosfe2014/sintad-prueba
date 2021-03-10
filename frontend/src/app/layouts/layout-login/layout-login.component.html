@@ -1,0 +1,52 @@
+
+<main class="wrap-login text-center">
+  <form [formGroup]="formulario" (ngSubmit)="save()" class="form-signin">
+    <img class="mb-4" src="https://angular.io/assets/images/logos/angular/angular_solidBlack.svg" alt="" width="130" height="130">
+    <h1 class="h3 mb-3 font-weight-normal">Autenticación de usuario</h1>
+
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <span>Username: sintad / Password: sintad</span>
+    <div class="form-group">
+      <label for="inputUsuario" class="sr-only">Usuario</label>
+      <input
+              [ngClass]="{
+                'is-invalid': checkInput('username', 'invalid'),
+                'is-valid': checkInput('username', 'valid')
+            }"
+              formControlName="username"
+              type="text"
+              id="inputUsuario"
+              class="form-control"
+              placeholder="Usuario">
+
+      <div *ngIf="isSubmited && formulario.invalid" class="invalid-feedback">
+        <span *ngIf="checkInput('username', 'invalid', 'required')"><i class="fas fa-times"></i> La usuario es obligatorio.</span>
+        <span *ngIf="checkInput('username', 'invalid', 'minlength')"><i class="fas fa-times"></i> El usuario debe tener como mínimo 4 caracteres.</span>
+        <span *ngIf="checkInput('username', 'invalid', 'maxlength')"><i class="fas fa-times"></i> El usuario debe tener como máximo 50 caracteres.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword" class="sr-only">Contraseña</label>
+      <input
+              [ngClass]="{
+                'is-invalid': checkInput('password', 'invalid'),
+                'is-valid': checkInput('password', 'valid')
+            }"
+              formControlName="password"
+              type="password"
+              id="inputPassword"
+              class="form-control"
+              placeholder="Contraseña">
+      <div *ngIf="isSubmited && formulario.invalid" class="invalid-feedback">
+        <span *ngIf="checkInput('password', 'invalid', 'required')"><i class="fas fa-times"></i> La contraseña es obligatoria.</span>
+        <span *ngIf="checkInput('password', 'invalid', 'minlength')"><i class="fas fa-times"></i> La contraseña debe tener como mínimo 4 caracteres.</span>
+        <span *ngIf="checkInput('password', 'invalid', 'maxlength')"><i class="fas fa-times"></i> La contraseña debe tener como máximo 50 caracteres.</span>
+      </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">Iniciar sesión</button>
+  </form>
+</main>
